@@ -1,5 +1,24 @@
+
 {% extends 'BootCRUDApp/base.html' %}
 
 {% block content %}
-<h1>In the Index Page</h1>
+<p><a href="{% url 'additem' %}">To add a item</a></p>
+{% if item_list %}
+<div class="gridContainer">
+    {% for eachitem in item_list %}
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ eachitem.picture }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ eachEntry.name }}</h5>
+            <p class="card-text">The description is {{ eachitem.description }} the price is {{eachitem.price}}</p>
+            <p><a href="{% url 'edit' item.id %}">
+                {{ user.first_name }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<h1>No Items for Sale</h1>
+{% endif %}
+
 {% endblock content %}
